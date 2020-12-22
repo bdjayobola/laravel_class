@@ -7,11 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyEmail extends Mailable
+class RecoveryEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $topic;
+    public $orders;
     public $name;
 
     /**
@@ -19,10 +19,11 @@ class VerifyEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($topic, $name)
+    public function __construct($topic, $orders, $name)
     {
         //
         $this->topic = $topic;
+        $this->orders = $orders;
         $this->name = $name;
     }
 
@@ -31,9 +32,8 @@ class VerifyEmail extends Mailable
      *
      * @return $this
      */
-
     public function build()
     {
-        return $this->markdown('emails.verify_email')->subject('Account Verification');
+        return $this->markdown('emails.email_recovery')->subject('Reset Password Notification');
     }
 }

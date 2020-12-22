@@ -2,14 +2,14 @@
     
 Hello {{$name}},
 
-You are receiving this email in order to complete your account registration.
+Mr {{$orders}} invited you to join thrift group on our platform, click on the below button to view group.
 
 
 @component('mail::button', ['url' => $topic])
-    Verify Email
+    Group Invite Link
 @endcomponent
 
-This verify email link will expire in 60 minutes.
+
 
 
 @lang('Regards'),<br>Ajo.com

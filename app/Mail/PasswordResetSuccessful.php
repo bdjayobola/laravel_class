@@ -7,11 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyEmail extends Mailable
+class PasswordResetSuccessful extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $topic;
     public $name;
 
     /**
@@ -19,10 +17,10 @@ class VerifyEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($topic, $name)
+    public function __construct($name)
     {
         //
-        $this->topic = $topic;
+
         $this->name = $name;
     }
 
@@ -31,9 +29,8 @@ class VerifyEmail extends Mailable
      *
      * @return $this
      */
-
     public function build()
     {
-        return $this->markdown('emails.verify_email')->subject('Account Verification');
+        return $this->markdown('emails.password_reset_message')->subject('Reset Password Notification');
     }
 }
